@@ -1,0 +1,272 @@
+<div class="body">
+
+    <!--Panel Botones-->
+
+    <mat-grid-list cols="7" rowHeight="50px">
+
+        <mat-grid-tile colspan="3"></mat-grid-tile >
+        <mat-grid-tile colspan="3">
+            <div class="div_buttons">
+                <button (click)="goToPreviousStep()" mat-icon-button><mat-icon>navigate_before</mat-icon></button>
+                <button (click)="goToNextStep()" mat-icon-button><mat-icon>navigate_next</mat-icon></button>
+            </div>
+        </mat-grid-tile >
+        <mat-grid-tile colspan="1"></mat-grid-tile >
+
+    </mat-grid-list>
+
+    <!--Panel Forularios-->
+    
+    <mat-grid-list cols="7" rowHeight="1300px" >
+
+        <mat-grid-tile colspan="1"></mat-grid-tile >
+
+        <!--Stepper lateral-->
+
+        <mat-grid-tile colspan="2">
+
+            <div class="step_lateral">
+                <mat-card id="card_lateral">
+                    <mat-card-header class="menu_lateral">
+    
+                        <div mat-card-title-group fxLayout="column" fxLayoutAlign="start">
+                            <mat-card-title class="menu_tittle white">Incorporación de Personal </mat-card-title>
+                            <br>
+                          </div>
+    
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-stepper orientation="vertical" [linear]="isLinear" #form_lateral>
+                            
+                            <mat-step *ngFor="let item of stepListTitte">
+                                <ng-template matStepLabel>
+                                <mat-icon>check</mat-icon>
+                                 <label>{{item.tittle}}</label>
+                                 <div class="progress-container">
+                                    <mat-progress-bar mode="determinate" [value]="item.percentage"></mat-progress-bar>
+                                    <div class="progress-label">{{ item.percentage }}%</div>
+                                  </div>
+                                </ng-template>
+                            </mat-step>
+                                                   
+                          </mat-stepper>
+                    </mat-card-content>
+                  </mat-card>
+            </div> 
+
+        </mat-grid-tile >
+
+        <!--Formulario-->
+
+        <mat-grid-tile colspan="3">
+
+            <div class="form_user">
+                <mat-stepper [linear]="isLinear" headerPosition="bottom" #form_stepper>
+                    <!--Datos Personales-->
+                    
+                    <mat-step [stepControl]="firstFormGroup">
+                      <form [formGroup]="firstFormGroup">
+                        <div><h2 style="text-align: left">Datos Personales: </h2></div><br>
+                        <ng-template matStepLabel>Datos Personales:</ng-template>
+            
+                        <div>
+                            <label>Tipo de documento * </label>        
+                            <mat-form-field>
+                                <mat-select required formControlName="doc_type">
+                                  <mat-option value="DNI">Documento Nacional de Identidad (DNI)</mat-option>
+                                  <mat-option value="Extranjeria">Carnet de Extranjeria</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+            
+                               <!--<mat-form-field>
+                                <mat-select *ngFor="let element of tipoDeDocumento"  required formControlName="doc_type" >
+                                  <mat-option value={{element}}>{{element}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>-->
+                        </div>
+            
+                        <div>
+                            <label>Numero de Documento * </label>
+                            <mat-form-field>
+                            <input matInput formControlName="doc_num" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Pais Emisor de documento  * </label>
+                            <mat-form-field>
+                                <mat-select formControlName="doc_country" required>
+                                  <mat-option value="Peru">Peru</mat-option>
+                                  <mat-option value="Chile">Chile</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Primer nombre * </label>
+                            <mat-form-field>
+                            <input matInput formControlName="first_name" required>                          
+                              <mat-error *ngIf="name.errors?.['required']">Name cannot be Bob.</mat-error>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Segundo nombre * </label>
+                            <mat-form-field>
+                            <input matInput formControlName="second_name" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Tercer nombre * </label>
+                            <mat-form-field>
+                              <input matInput formControlName="third_name" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Cuarto nombre * </label>
+                            <mat-form-field>
+                              <input matInput formControlName="fourth_name" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Apellido Paterno * </label>
+                            <mat-form-field>
+                              <input matInput formControlName="last_name1" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Apellido Materno * </label>
+                            <mat-form-field>
+                              <input matInput formControlName="last_name2" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div>
+                            <label>Estado Civil * </label>
+                            <mat-form-field>
+                                <mat-select formControlName="civil_status" required>
+                                  <mat-option value="Soltero">Soltero</mat-option>
+                                  <mat-option value="Casado">Casado</mat-option>
+                                  <mat-option value="Divorciado">Divorciado</mat-option>
+                                  <mat-option value="Viudo">Viudo</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+    
+                        <div>
+                            <label>Sexo * </label>
+                            <mat-form-field>
+                                <mat-select formControlName="gender" required>
+                                  <mat-option value="M">Masculino</mat-option>
+                                  <mat-option value="F">Femenino</mat-option>
+                                  <mat-option value="*">Prefiero no decirlo</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+
+                        <div>
+                            <label>Fecha de nacimiento * </label>
+                            <!--
+                                <mat-form-field formControlName="date" required>
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker #picker></mat-datepicker>
+                              </mat-form-field>
+                              <button mat-raised-button (click)="picker.open()">Open</button>
+                            -->
+                        </div>
+    
+                        <div>
+                            <label>Nacionalidad * </label>
+                            <mat-form-field>
+                                <mat-select formControlName="nationality" required>
+                                  <mat-option value="L">Local</mat-option>
+                                  <mat-option value="E">Extranjera</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </div>
+    
+                        <div>
+                            <label>Correo Personal * </label>
+                            <mat-form-field>
+                            <input matInput formControlName="email" required>
+                            </mat-form-field>
+                        </div>
+            
+                        <div class="div_button_save">
+                            <button mat-icon-button>
+                                <mat-icon>save</mat-icon>
+                              </button>
+                        </div>
+
+                      </form>
+                    </mat-step>
+            
+                    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+                      <form [formGroup]="secondFormGroup">
+                        <mat-form-field>
+                          <mat-label>Address</mat-label>
+                          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                                 required>
+                        </mat-form-field>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
+                    </mat-step>
+
+                    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+                        <form [formGroup]="secondFormGroup">
+                          <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                                   required>
+                          </mat-form-field>
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </mat-step>
+
+                      <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+                        <form [formGroup]="secondFormGroup">
+                          <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                                   required>
+                          </mat-form-field>
+                          <div>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                          </div>
+                        </form>
+                      </mat-step>
+                      
+            
+                    <mat-step>
+                      <ng-template matStepLabel>Done</ng-template>
+                      <p>You are now done.</p>
+                      <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button (click)="stepper.reset()">Reset</button>
+                      </div>
+                    </mat-step>
+
+                  </mat-stepper>
+            </div>
+
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="1"></mat-grid-tile >
+
+    </mat-grid-list>
+    
+
+</div>

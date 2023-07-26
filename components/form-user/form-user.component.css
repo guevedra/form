@@ -1,0 +1,108 @@
+
+*{
+    color: #009A3E;
+}
+
+/*Botones*/
+
+.div_buttons{
+    position: absolute; 
+    right: 0;
+    margin-right: 20px;
+}
+
+/*Lateral*/
+
+.step_lateral{
+    
+    position: absolute; 
+    top: 0;
+    
+}
+
+.label_lateral{
+    margin-bottom: 500px;
+}
+
+.menu_lateral {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    background-color: #009A3E;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .white{
+    color: white;
+  }
+
+  .progress-container {
+    position: relative;
+  }
+  
+  .progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: white;
+  }
+
+  mat-progress-bar{
+    width: 260px;
+    height: 25px;
+    border-radius: 10px;
+    /*display: flex;
+    align-items: center;
+    justify-content: center;*/
+  }
+
+  /*Formulario*/
+
+  .form_user{
+        position:absolute;
+        top: 0;
+        width: 100%;
+  }
+
+  form{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+   
+  }
+
+  form > div{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+  }
+
+  form > div > label{
+    width: 40%;
+  }
+
+  form > div > mat-form-field{
+    width: 60%;
+  }
+
+  form > div > mat-form-field > input{
+    border: #009A3E 5px solid;
+    border-radius: 10px;
+  }
+
+  mat-form-field{
+    /*height: 62px;*/
+  }
+
+  .div_button_save{
+    display: flex;
+    bottom: 0;
+  }
+
+  .div_button_save > button{
+    margin-left: auto
+  }
+
